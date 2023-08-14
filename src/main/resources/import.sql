@@ -1,0 +1,1 @@
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, criado, atualizado) VALUES ('General Motors', 'Onix', 2012, 'Versão LTZ 1.0 Flex', 50000, '123456789XYZ', true, '2023-08-13', '2023-08-14');

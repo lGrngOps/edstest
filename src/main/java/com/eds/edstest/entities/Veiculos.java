@@ -2,6 +2,7 @@ package com.eds.edstest.entities;
 
 import jakarta.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
