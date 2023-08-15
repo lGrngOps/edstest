@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class VeiculoService {
@@ -21,9 +22,16 @@ public class VeiculoService {
         VeiculoDTO dto = new VeiculoDTO(result);
         return dto;
     }
-
+    @Transactional
     public List<Veiculos> findAll(){
         List<Veiculos> result = veiculoRepository.findAll();
         return result;
     }
+
+    public void delete(Integer id) {
+        veiculoRepository.deleteById(id);
+    }
+    // public void save (Veiculos veiculos) {
+    //   veiculoRepository.save(veiculos);
+    //}
 }

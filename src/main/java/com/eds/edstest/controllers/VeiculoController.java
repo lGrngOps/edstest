@@ -4,10 +4,9 @@ import com.eds.edstest.dto.VeiculoDTO;
 import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.services.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +28,16 @@ public class VeiculoController {
         List<Veiculos> result = veiculoService.findAll();
         return result;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        veiculoService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //@PostMapping
+    //@ResponseBody
+    //public ResponseEntity<Veiculos> save (@RequestBody Veiculos veiculos){
+    //    return new ResponseEntity<>(veiculoService.save(veiculos), HttpStatus.CREATED);
+    //}
 }
