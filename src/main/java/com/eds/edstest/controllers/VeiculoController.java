@@ -18,26 +18,36 @@ public class VeiculoController {
     private VeiculoService veiculoService;
 
     @GetMapping(value = "/{id}")
-    public VeiculoDTO findById(@PathVariable Integer id){
+    public VeiculoDTO findById(@PathVariable Integer id) {
         VeiculoDTO result = veiculoService.findById(id);
         return result;
     }
 
     @GetMapping
-    public List<Veiculos> findAll(){
+    public List<Veiculos> findAll() {
         List<Veiculos> result = veiculoService.findAll();
         return result;
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         veiculoService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    //@PostMapping
+    @PutMapping(path = "/{id}")
+        public ResponseEntity<Void> updateById(@RequestBody Veiculos veiculos, @PathVariable Integer id){
+        veiculoService.updateByID(veiculos, id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //@PostMapping("/veiculos")
     //@ResponseBody
+    //public ResponseEntity<Veiculos> replace (@RequestBody Veiculos veiculos, @PathVariable Integer id){
+    //    return new ResponseEntity<>(veiculoService.findById(id));
+    //    return veiculoService.save(veiculos);
     //public ResponseEntity<Veiculos> save (@RequestBody Veiculos veiculos){
     //    return new ResponseEntity<>(veiculoService.save(veiculos), HttpStatus.CREATED);
-    //}
+    // }
+
 }

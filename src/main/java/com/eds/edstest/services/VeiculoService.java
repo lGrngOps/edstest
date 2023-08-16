@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class VeiculoService {
@@ -17,21 +16,26 @@ public class VeiculoService {
     private VeiculoRepository veiculoRepository;
 
     @Transactional
-    public VeiculoDTO findById(Integer id){
+    public VeiculoDTO findById(Integer id){ // Retorna os detalhes do veiculo
         Veiculos result = veiculoRepository.findById(id).get();
         VeiculoDTO dto = new VeiculoDTO(result);
         return dto;
     }
     @Transactional
-    public List<Veiculos> findAll(){
+    public List<Veiculos> findAll(){ // Retorna todos os veiculos
         List<Veiculos> result = veiculoRepository.findAll();
         return result;
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id) { // Apaga o veiculo
         veiculoRepository.deleteById(id);
     }
-    // public void save (Veiculos veiculos) {
-    //   veiculoRepository.save(veiculos);
-    //}
+
+    public void updateByID(Veiculos veiculos, Integer id) { // Atualiza os dados de um veiculo
+        veiculoRepository.save(veiculos);
+    }
+
+    // public void save (Veiculos veiculos) { // Adiciona um novo veiculo
+    //   veiculoRepository.save(veiculos.getId());
+    //  }
 }
