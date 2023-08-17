@@ -11,19 +11,19 @@ import java.util.Date;
 @Data
 public class VeiculoFormAdd {
 
-    @NotBlank(message = " Gentileza informar a marca do veículo")
+    //@NotBlank(message = " Gentileza informar a marca do veículo")
     private String marca;
-    @NotBlank(message = " Gentileza informar o modelo do veículo")
+    //@NotBlank(message = " Gentileza informar o modelo do veículo")
     private String veiculo;
-    @PastOrPresent @NotBlank(message = " Gentileza informar o ano de fabricação do veículo")
+    //@PastOrPresent @NotBlank(message = " Gentileza informar o ano de fabricação do veículo")
     private Integer ano;
-    @NotBlank(message = " Gentileza informar a descrição do veículo")
+    //@NotBlank(message = " Gentileza informar a descrição do veículo")
     private String descricao;
-    @Positive @NotBlank(message = " Gentileza informar o valor do veículo")
+    //@Positive @NotBlank(message = " Gentileza informar o valor do veículo")
     private Float preco;
-    @UniqueElements @NotBlank(message = " Gentileza informar o chassi do veículo")
+    //@UniqueElements @NotBlank(message = " Gentileza informar o chassi do veículo")
     private String chassi;
-    @NotBlank(message = " Informar situação de venda do veiculo")
+    //@NotBlank(message = " Informar situação de venda do veiculo")
     private Boolean vendido;
     private Date created;
     private Date updated;
