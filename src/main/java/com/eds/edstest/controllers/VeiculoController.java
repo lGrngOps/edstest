@@ -8,7 +8,6 @@ import com.eds.edstest.services.VeiculoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class VeiculoController {
     }
 
     @GetMapping("/{id}")
-    public VeiculoDTO findVeiculoById(@PathVariable("id") Long id) {
+    public VeiculoDTO findVeiculoById(@PathVariable Long id) {
         return veiculoService.findVeiculoById(id);
     }
 
@@ -37,12 +36,12 @@ public class VeiculoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long id) {
+    public void deleteById(@PathVariable Long id) {
         veiculoService.deleteById(id);
     }
 
     @PutMapping("/{id}")
-        public VeiculoDTO updateById(@RequestBody VeiculoFormUpdate formUpdate, @PathVariable("id") Long id){
-        return veiculoService.updateById(formUpdate, id);
+        public VeiculoDTO updateById(@RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id){
+        return veiculoService.updateById(veiculoFormUpdate,id);
     }
 }

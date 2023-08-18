@@ -20,14 +20,14 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    @Transactional
+    //@Transactional
     public VeiculoDTO addVeiculo(VeiculoFormAdd veiculoFormAdd){
         Veiculos veiculos = convertToBusiness(veiculoFormAdd);
         veiculos = veiculoRepository.save(veiculos);
         return convertToDTO(veiculos);
     }
 
-    @Transactional
+    //@Transactional
     public VeiculoDTO findVeiculoById(Long id){ // Retorna os detalhes do veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
         if (optional.isPresent()){
@@ -36,24 +36,29 @@ public class VeiculoService {
         return null;
     }
 
-    @Transactional
+    //@Transactional
     public List<VeiculoDTO> findAllVeiculos(){ // Retorna todos os veiculos
         List<Veiculos> result = veiculoRepository.findAll();
         return convertListToDTO(result);
     }
 
-    @Transactional
+    //@Transactional
     public void deleteById(Long id) { // Apaga o veiculo
         if (veiculoRepository.existsById(id)) {
             veiculoRepository.deleteById(id);
         }
     }
 
-    @Transactional
-    public VeiculoDTO updateById(VeiculoFormUpdate formUpdate, Long id) { // Atualiza os dados de um veiculo
+    //@Transactional
+    public VeiculoDTO updateById(VeiculoFormUpdate veiculoFormUpdate, Long id){ // Atualiza os dados de um veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
+
         if (optional.isPresent()){
             Veiculos upt = optional.get();
+
+            if (veiculoFormUpdate.getVeiculo() != null){
+                upt.setVeiculo(veiculoFormUpdate.getVeiculo());
+            }
 
             veiculoRepository.save(upt);
             return convertToDTO(upt);
@@ -66,7 +71,7 @@ public class VeiculoService {
         veiculos.setMarca(veiculoFormAdd.getMarca());
         veiculos.setVeiculo(veiculoFormAdd.getVeiculo());
         veiculos.setAno(veiculoFormAdd.getAno());
-        veiculos.setDescricao(veiculos.getDescricao());
+        veiculos.setDescricao(veiculoFormAdd.getDescricao());
         veiculos.setPreco(veiculoFormAdd.getPreco());
         veiculos.setChassi(veiculoFormAdd.getChassi());
         veiculos.setVendido(veiculoFormAdd.getVendido());

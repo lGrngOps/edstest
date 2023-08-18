@@ -1,5 +1,6 @@
 package com.eds.edstest.dto;
 
+import com.eds.edstest.entities.Veiculos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Positive;
@@ -27,5 +28,7 @@ public class VeiculoFormUpdate {
     private Boolean vendido;
     private Date created;
     private Date updated;
+
+    public VeiculoFormUpdate(){}
 
 }
