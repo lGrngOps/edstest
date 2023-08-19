@@ -1,9 +1,7 @@
 package com.eds.edstest.dto;
 
 import com.eds.edstest.entities.Veiculos;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -12,19 +10,20 @@ import java.util.Date;
 @Data
 public class VeiculoFormAdd {
 
-    //@NotBlank(message = " Gentileza informar a marca do veículo")
+    @NotBlank(message = " Gentileza informar a marca do veículo")
     private String marca;
-    //@NotBlank(message = " Gentileza informar o modelo do veículo")
+    @NotBlank(message = " Gentileza informar o modelo do veículo")
     private String veiculo;
-    //@PastOrPresent @NotBlank(message = " Gentileza informar o ano de fabricação do veículo")
+    //@NotBlank(message = " Gentileza informar o ano de fabricação do veículo")
+    @NotNull
     private Integer ano;
-    //@NotBlank(message = " Gentileza informar a descrição do veículo")
+    @NotBlank(message = " Gentileza informar a descrição do veículo")
     private String descricao;
-    //@Positive @NotBlank(message = " Gentileza informar o valor do veículo")
+    //@NotBlank(message = " Gentileza informar o valor do veículo")
+    @NotNull
     private Float preco;
-    //@UniqueElements @NotBlank(message = " Gentileza informar o chassi do veículo")
+    @NotBlank(message = " Gentileza informar o chassi do veículo")
     private String chassi;
-    //@NotBlank(message = " Informar situação de venda do veiculo")
     private Boolean vendido;
     private Date created;
     private Date updated;

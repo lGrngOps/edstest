@@ -8,6 +8,7 @@ import com.eds.edstest.services.VeiculoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class VeiculoController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public VeiculoDTO addVeiculo (@RequestBody @Valid VeiculoFormAdd veiculoFormAdd){
+    public VeiculoDTO addVeiculo (@Valid @RequestBody VeiculoFormAdd veiculoFormAdd){
         return veiculoService.addVeiculo(veiculoFormAdd);
     }
 
@@ -41,7 +42,7 @@ public class VeiculoController {
     }
 
     @PutMapping("/{id}")
-        public VeiculoDTO updateById(@RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id){
+        public VeiculoDTO updateById(@Valid @RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id){
         return veiculoService.updateById(veiculoFormUpdate,id);
     }
 }

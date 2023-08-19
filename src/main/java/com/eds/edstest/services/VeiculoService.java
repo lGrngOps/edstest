@@ -56,9 +56,9 @@ public class VeiculoService {
         if (optional.isPresent()){
             Veiculos upt = optional.get();
 
-            if (veiculoFormUpdate.getVeiculo() != null){
-                upt.setVeiculo(veiculoFormUpdate.getVeiculo());
-            }
+            //if (veiculoFormUpdate.getVeiculo() != null){
+            //    upt.setVeiculo(veiculoFormUpdate.getVeiculo());
+            //}
 
             veiculoRepository.save(upt);
             return convertToDTO(upt);
