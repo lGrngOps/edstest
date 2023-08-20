@@ -12,11 +12,11 @@ public class VeiculoFormUpdate {
     private String marca;
     @NotEmpty(message = " Gentileza informar o modelo do veículo")
     private String veiculo;
-    @NotNull
+    @NotNull @Min(value = 1700) @Max(value = 2023)
     private Integer ano;
     @NotEmpty(message = " Gentileza informar a descrição do veículo")
     private String descricao;
-    @NotNull
+    @NotNull @PositiveOrZero
     private Float preco;
     @NotEmpty(message = " Gentileza informar o chassi do veículo")
     private String chassi;
