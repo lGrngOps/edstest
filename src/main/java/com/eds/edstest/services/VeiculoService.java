@@ -20,53 +20,59 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    //@Transactional
+    @Transactional
     public VeiculoDTO addVeiculo(VeiculoFormAdd veiculoFormAdd){
-        Veiculos veiculos = convertToBusiness(veiculoFormAdd);
+        Veiculos veiculos = convertToAddVeiculo(veiculoFormAdd);
         veiculos = veiculoRepository.save(veiculos);
-        return convertToDTO(veiculos);
+        return convertToVeiculoDTO(veiculos);
     }
 
-    //@Transactional
+    @Transactional
     public VeiculoDTO findVeiculoById(Long id){ // Retorna os detalhes do veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
         if (optional.isPresent()){
-            return convertToDTO(optional.get());
+            return convertToVeiculoDTO(optional.get());
         }
         return null;
     }
 
-    //@Transactional
+    @Transactional
     public List<VeiculoDTO> findAllVeiculos(){ // Retorna todos os veiculos
         List<Veiculos> result = veiculoRepository.findAll();
         return convertListToDTO(result);
     }
 
-    //@Transactional
+    @Transactional
     public void deleteById(Long id) { // Apaga o veiculo
         if (veiculoRepository.existsById(id)) {
             veiculoRepository.deleteById(id);
         }
     }
 
-    //@Transactional
+    @Transactional
     public VeiculoDTO updateById(VeiculoFormUpdate veiculoFormUpdate, Long id){ // Atualiza os dados de um veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
 
         if (optional.isPresent()){
             Veiculos upt = optional.get();
 
-            //if (veiculoFormUpdate.getVeiculo() != null){
-            //    upt.setVeiculo(veiculoFormUpdate.getVeiculo());
-            //}
+                upt.setMarca(veiculoFormUpdate.getMarca());
+                upt.setVeiculo(veiculoFormUpdate.getVeiculo());
+                upt.setAno(veiculoFormUpdate.getAno());
+                upt.setDescricao(veiculoFormUpdate.getDescricao());
+                upt.setPreco(veiculoFormUpdate.getPreco());
+                upt.setChassi(veiculoFormUpdate.getChassi());
+                upt.setVendido(veiculoFormUpdate.getVendido());
+                upt.setCreated(veiculoFormUpdate.getCreated());
+                upt.setUpdated(veiculoFormUpdate.getUpdated());
 
             veiculoRepository.save(upt);
-            return convertToDTO(upt);
+            return convertToVeiculoDTO(upt);
         }
         return null;
     }
 
-    private Veiculos convertToBusiness(VeiculoFormAdd veiculoFormAdd){
+    private Veiculos convertToAddVeiculo (VeiculoFormAdd veiculoFormAdd){
         Veiculos veiculos = new Veiculos();
         veiculos.setMarca(veiculoFormAdd.getMarca());
         veiculos.setVeiculo(veiculoFormAdd.getVeiculo());
@@ -80,7 +86,7 @@ public class VeiculoService {
         return veiculos;
     }
 
-    private VeiculoDTO convertToDTO(Veiculos veiculos){
+    private VeiculoDTO convertToVeiculoDTO (Veiculos veiculos){
         VeiculoDTO dto = new VeiculoDTO();
         dto.setId(veiculos.getId());
         dto.setMarca(veiculos.getMarca());

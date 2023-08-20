@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Data
@@ -22,9 +21,7 @@ import java.util.Objects;
         @Column(unique = true, nullable = false)
         private String chassi;
         private Boolean vendido;
-        //@Column(name = "criado")
         private Date created;
-        //@Column(name = "atualizado")
         private Date updated;
 
         public Veiculos() {
