@@ -63,7 +63,6 @@ public class VeiculoService {
                 upt.setPreco(veiculoFormUpdate.getPreco());
                 upt.setChassi(veiculoFormUpdate.getChassi());
                 upt.setVendido(veiculoFormUpdate.getVendido());
-                upt.setCreated(veiculoFormUpdate.getCreated());
                 upt.setUpdated(veiculoFormUpdate.getUpdated());
 
             veiculoRepository.save(upt);

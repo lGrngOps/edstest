@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 @Validated
 @RestController
@@ -25,6 +27,8 @@ public class VeiculoController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public VeiculoDTO addVeiculo (@Valid @RequestBody VeiculoFormAdd veiculoFormAdd, @PositiveOrZero Float preco){
+        veiculoFormAdd.setCreated(Date.from(Instant.now()));
+        veiculoFormAdd.setUpdated(Date.from(Instant.now()));
         return veiculoService.addVeiculo(veiculoFormAdd);
     }
 
@@ -45,6 +49,7 @@ public class VeiculoController {
 
     @PutMapping("/{id}")
         public VeiculoDTO updateById(@Valid @RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id, @PositiveOrZero Float preco){
+        veiculoFormUpdate.setUpdated(Date.from(Instant.now()));
         return veiculoService.updateById(veiculoFormUpdate,id);
     }
 }

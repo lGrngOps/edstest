@@ -21,7 +21,6 @@ public class VeiculoFormUpdate {
     @NotEmpty(message = " Gentileza informar o chassi do veículo")
     private String chassi;
     private Boolean vendido;
-    private Date created;
     private Date updated;
 
     public VeiculoFormUpdate(){}
