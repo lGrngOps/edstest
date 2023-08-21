@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class VeiculoService {
 
     @Autowired
-    private VeiculoRepository veiculoRepository;
+    VeiculoRepository veiculoRepository;
 
     @Transactional
     public VeiculoDTO addVeiculo(VeiculoFormAdd veiculoFormAdd){
@@ -50,7 +50,7 @@ public class VeiculoService {
     }
 
     @Transactional
-    public VeiculoDTO updateById(VeiculoFormUpdate veiculoFormUpdate, Long id){ // Atualiza os dados de um veiculo
+    public VeiculoDTO updateById(VeiculoFormUpdate veiculoFormUpdate, Long id) { // Atualiza os dados de um veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
 
         if (optional.isPresent()){

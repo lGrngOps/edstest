@@ -3,8 +3,6 @@ package com.eds.edstest.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,7 +18,7 @@ import java.util.Date;
         private Integer ano;
         private String descricao;
         private Float preco;
-        @Column(unique = true, nullable = false)
+        @Column(unique = true, nullable = false) // RN001
         private String chassi;
         private Boolean vendido;
         private Date created;
