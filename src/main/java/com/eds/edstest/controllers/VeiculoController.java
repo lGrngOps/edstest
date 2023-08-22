@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/veiculos")
 public class VeiculoController {
+
+    //@RequestMapping("/")
+    //public String index(Model model){
+    //    model.addAttribute("msnBemVindo", "Hello World Poooha !!!");
+    //    return "Index";
+    //}
 
     @Autowired
     private VeiculoService veiculoService;
