@@ -43,6 +43,13 @@ public class VeiculoService {
     }
 
     @Transactional
+    // Teste Retorna os veículos de acordo com filtros passados através de query string
+    public List<Veiculos> findByOrderByMarcaAsc(){
+        List<Veiculos> result = veiculoRepository.findByOrderByMarcaAsc();
+        return result;
+    }
+
+    @Transactional
     public void deleteById(Long id) { // Apaga o veiculo
         if (veiculoRepository.existsById(id)) {
             veiculoRepository.deleteById(id);
