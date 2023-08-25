@@ -9,4 +9,6 @@ public interface VeiculoRepository extends JpaRepository<Veiculos, Long> {
 
     public List<Veiculos> findByOrderByMarcaAsc();
 
+    public List<Veiculos> findByVendidoTrue();
+
 }

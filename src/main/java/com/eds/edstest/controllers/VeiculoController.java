@@ -3,7 +3,6 @@ package com.eds.edstest.controllers;
 import com.eds.edstest.dto.VeiculoDTO;
 import com.eds.edstest.dto.VeiculoFormAdd;
 import com.eds.edstest.dto.VeiculoFormUpdate;
-import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.services.VeiculoService;
 
 import jakarta.validation.Valid;
@@ -12,8 +11,6 @@ import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,15 +62,20 @@ public class VeiculoController {
     }
 
     @PutMapping("/veiculos/{id}")
-    public VeiculoDTO updateById(@Valid @RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id,
-                                 @PositiveOrZero Float preco){
+    public VeiculoDTO updateById(@Valid @RequestBody VeiculoFormUpdate veiculoFormUpdate, @PathVariable Long id,  @PositiveOrZero Float preco){
         veiculoFormUpdate.setUpdated(Date.from(Instant.now()));
         return veiculoService.updateById(veiculoFormUpdate,id);
     }
 
     @GetMapping("/veiculos/sortByMarca")
-    public ResponseEntity<List<Veiculos>> findOrderByMarca(){
-        List<Veiculos> result = veiculoService.findByOrderByMarcaAsc();
+    public ResponseEntity<List<VeiculoDTO>> findOrderByMarca(){
+        List<VeiculoDTO> result = veiculoService.findByOrderByMarcaAsc();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/veiculos/vendidos")
+    public ResponseEntity<List<VeiculoDTO>> findByVendidoTrue(){
+        List<VeiculoDTO> result = veiculoService.findByVendidoTrue();
         return ResponseEntity.ok(result);
     }
 }
