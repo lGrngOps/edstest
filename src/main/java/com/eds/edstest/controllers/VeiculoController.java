@@ -24,17 +24,6 @@ import java.util.List;
 @RequestMapping("/")
 public class VeiculoController {
 
-    //@RequestMapping("/")
-    //public String index(Model model){
-    //    model.addAttribute("msnBemVindo","Hello World, Pohhhhaa !!!");
-    //    return "index";
-    //}
-
-    //@GetMapping("/")
-    //public String home(){
-    //    return "index";
-    //}
-
     @Autowired
     private VeiculoService veiculoService;
 
