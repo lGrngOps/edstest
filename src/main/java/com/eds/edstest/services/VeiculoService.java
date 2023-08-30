@@ -44,8 +44,8 @@ public class VeiculoService {
 
     @Transactional
     // Teste Retorna os veículos de acordo com filtros passados através de query string
-    public List<VeiculoDTO> findByOrderByMarcaAsc(){
-        List<Veiculos> result = veiculoRepository.findByOrderByMarcaAsc();
+    public List<VeiculoDTO> findByOrderByVeiculoAsc(){
+        List<Veiculos> result = veiculoRepository.findByOrderByVeiculoAsc();
         return convertListToDTO(result);
     }
 

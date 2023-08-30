@@ -20,7 +20,6 @@ import java.util.List;
 
 @Validated
 @RestController
-//@Controller
 @RequestMapping("/")
 public class VeiculoController {
 
@@ -32,7 +31,7 @@ public class VeiculoController {
     public VeiculoDTO addVeiculo (@Valid @RequestBody VeiculoFormAdd veiculoFormAdd, @PositiveOrZero Float preco){
         veiculoFormAdd.setCreated(Date.from(Instant.now()));
         veiculoFormAdd.setUpdated(Date.from(Instant.now()));
-        return veiculoService.addVeiculo(veiculoFormAdd);
+        return veiculoService.addVeiculo(veiculoFormAdd); 
     }
 
     @GetMapping("/veiculos/{id}")
@@ -56,9 +55,9 @@ public class VeiculoController {
         return veiculoService.updateById(veiculoFormUpdate,id);
     }
 
-    @GetMapping("/veiculos/sortByMarca")
-    public ResponseEntity<List<VeiculoDTO>> findOrderByMarca(){
-        List<VeiculoDTO> result = veiculoService.findByOrderByMarcaAsc();
+    @GetMapping("/veiculos/sortByVeiculo")
+    public ResponseEntity<List<VeiculoDTO>> findOrderByVeiculo(){
+        List<VeiculoDTO> result = veiculoService.findByOrderByVeiculoAsc();
         return ResponseEntity.ok(result);
     }
 

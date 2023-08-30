@@ -1,64 +1,110 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base :: headCust">
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.1-dist/css/bootstrap.min.css}">
+    <script th:src="@{/jquery-3.7.0-dist/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/bootstrap-5.3.1-dist/js/bootstrap.min.js}"></script>
 
-    <title>Cadastro</title>
+    <style>
+    .mensagem{
+    color: red;
+    }
+</style>
+
+    <title> ..:: Cadastro de Veículo ::.. </title>
+
 </head>
 <body>
-<div th:replace="base :: navlinks"></div>
-    <div class="alert alert-primary" role="alert">
-        <h2> Cadastro de Veiculos </h2>
-    </div>
-<form>
-    <div class="form-group">
-        <label for="exampleFormControlInput"> Marca :</label>
-        <input type="marca" class="form-control" id="exampleFormControlInput">
-    </div>
-    <p></p>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"> Veículo :</label>
-        <input type="veiculo" class="form-control" id="exampleFormControlInput1">
-    </div>
-    <p></p>
-    <div class="mb-3">
-        <label for="exampleFormControlInput2" class="form-label"> Ano :</label>
-        <input type="ano" class="form-control" id="exampleFormControlInput2">
-    </div>
-    <p></p>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea" class="form-label"> Descrição :</label>
-        <textarea class="form-control" id="exampleFormControlTextarea" rows="3"></textarea>
-    </div>
-    <p></p>
-    <div class="mb-3">
-        <label for="exampleFormControlInput3" class="form-label"> Preço :</label>
-        <input type="preco" class="form-control" id="exampleFormControlInput3">
-    </div>
-    <p></p>
-    <div class="mb-3">
-        <label for="exampleFormControlInput4" class="form-label"> Chassi :</label>
-        <input type="chassi" class="form-control" id="exampleFormControlInput4">
-    </div>
-    <p></p>
-    <div class="form-group">
-        <label for="exampleFormControlSelect1"> Vendido </label>
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-    </div>
-    <p></p>
-    <p></p>
-    <div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-primary" type="button">Salvar</button>
-        <button class="btn btn-primary" type="button">Cancelar</button>
-    </div>
-</form>
 
+<div th:replace="base :: navlinks"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2> Cadastro de Veiculos </h2>
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+            <form action="#" th:action="@{/salvar}" th:object="${veiculo}" method="post">
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Marca :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{marca}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Veículo :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{veiculo}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('veiculo')}" th:errors="*{veiculo}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Ano :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{ano}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Descrição :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{descricao}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Preço :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{preco}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Chassi :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{chassi}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-1 col-form-label">Vendido :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" th:field="*{vendido}">
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="mensagem" th:if="${#fields.hasErrors('vendido')}" th:errors="*{vendido}"></span>
+                    </div>
+                </div>
+
+                <input class="btn btn-primary" type="submit" value="Salvar"/>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div th:replace="base :: footer"></div>
 </body>

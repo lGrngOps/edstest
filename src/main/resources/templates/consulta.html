@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base :: headCust">
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.1-dist/css/bootstrap.min.css}">
+    <script th:src="@{/jquery-3.7.0-dist/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/bootstrap-5.3.1-dist/js/bootstrap.min.js}"></script>
 
-    <title>Consulta</title>
+    <title> ..:: Consulta de Veículos ::.. </title>
+
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<div class="alert alert-primary" role="alert">
-    <h2> Consulta Veiculos </h2>
+
+    <h2> Consulta de Veículos </h2>
+
 </div>
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="card-link">Alterar</a>
-        <a href="#" class="card-link">Excluir</a>
+        <h5 class="card-title">Veiculo</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Marca</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Ano</h6>
+        <p class="card-text">Descrição</p>
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Alterar</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Excluir</button>
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Edição Veículo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                Você deseja continuar ?
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div th:replace="base :: footer"></div>

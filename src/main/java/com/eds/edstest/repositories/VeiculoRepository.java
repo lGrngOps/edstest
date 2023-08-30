@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VeiculoRepository extends JpaRepository<Veiculos, Long> {
 
-    public List<Veiculos> findByOrderByMarcaAsc();
+    public List<Veiculos> findByOrderByVeiculoAsc();
 
     public List<Veiculos> findByVendidoTrue();
 

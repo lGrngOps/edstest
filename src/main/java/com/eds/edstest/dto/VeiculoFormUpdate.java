@@ -21,6 +21,7 @@ public class VeiculoFormUpdate {
     private Float preco;
     @NotEmpty(message = " Gentileza informar o chassi do veículo")
     private String chassi;
+    @NotNull
     private Boolean vendido;
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date updated;
