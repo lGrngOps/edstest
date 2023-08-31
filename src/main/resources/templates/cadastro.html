@@ -7,8 +7,8 @@
     <script th:src="@{/jquery-3.7.0-dist/jquery-3.7.0.min.js}"></script>
     <script th:src="@{/bootstrap-5.3.1-dist/js/bootstrap.min.js}"></script>
 
-    <style>
-    .mensagem{
+<style>
+    mensagem{
     color: red;
     }
 </style>
@@ -28,7 +28,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 <span th:text="${mensagem}"></span>
             </div>
-            <form action="#" th:action="@{/salvar}" th:object="${veiculo}" method="post">
+            <form action="#" th:action="@{/salvar}" th:object="${veiculoFormAdd}" method="post">
 
                 <div class="row mb-3">
                     <label class="col-sm-1 col-form-label">Marca :</label>
@@ -101,6 +101,7 @@
                 </div>
 
                 <input class="btn btn-primary" type="submit" value="Salvar"/>
+                <a type="button" class="btn btn-primary" href="/">Cancelar</a>
             </form>
         </div>
     </div>
