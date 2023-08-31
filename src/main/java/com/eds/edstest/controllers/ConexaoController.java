@@ -42,4 +42,10 @@ public class ConexaoController {
         attributes.addFlashAttribute("mensagem","Veículo cadastrado com sucesso!");
         return "redirect:/novo";
     }
+    @RequestMapping("/listar")
+    public String listarVeiculo(Model model) {
+        model.addAttribute("veiculo", veiculoService.findAllVeiculos());
+        return "/consulta";
+    }
+
 }

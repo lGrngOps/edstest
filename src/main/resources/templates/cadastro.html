@@ -7,12 +7,6 @@
     <script th:src="@{/jquery-3.7.0-dist/jquery-3.7.0.min.js}"></script>
     <script th:src="@{/bootstrap-5.3.1-dist/js/bootstrap.min.js}"></script>
 
-<style>
-    mensagem{
-    color: red;
-    }
-</style>
-
     <title> ..:: Cadastro de Veículo ::.. </title>
 
 </head>
@@ -99,7 +93,6 @@
                         <span class="mensagem" th:if="${#fields.hasErrors('vendido')}" th:errors="*{vendido}"></span>
                     </div>
                 </div>
-
                 <input class="btn btn-primary" type="submit" value="Salvar"/>
                 <a type="button" class="btn btn-primary" href="/">Cancelar</a>
             </form>

@@ -13,32 +13,45 @@
 <body>
 <div th:replace="base :: navlinks"></div>
 
-    <h2> Consulta de Veículos </h2>
+<div class="container">
+    <div class="row">
 
-</div>
+        <div class="col">
+            <h2>Lista de Veículos</h2>
 
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Veiculo</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Marca</h6>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Ano</h6>
-        <p class="card-text">Descrição</p>
-
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Alterar</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Excluir</button>
-
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Edição Veículo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                Você deseja continuar ?
-            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Veículo</th>
+                    <th>Ano</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Chassi</th>
+                    <th>Vendido</th>
+                    <th>Criado</th>
+                    <th>Atualizado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${veiculo.empty}">
+                    <td colspan="2">Sem veículos</td>
+                </tr>
+                <tr th:each="veiculo : ${veiculo}">
+                    <td><span th:text="${veiculo.marca}"> Marca </span></td>
+                    <td><span th:text="${veiculo.veiculo}"> Veículo </span></td>
+                    <td><span th:text="${veiculo.ano}"> Ano </span></td>
+                    <td><span th:text="${veiculo.descricao}"> Descrição </span></td>
+                    <td><span th:text="${veiculo.preco}"> Preço </span></td>
+                    <td><span th:text="${veiculo.chassi}"> Chassi </span></td>
+                    <td><span th:text="${veiculo.vendido}"> Vendido </span></td>
+                    <td><span th:text="${#dates.format(veiculo.created, 'dd/MM/yyyy HH:mm')}"> Criado </span></td>
+                    <td><span th:text="${#dates.format(veiculo.updated, 'dd/MM/yyyy HH:mm')}"> Atualizado </span></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
 </div>
 
 <div th:replace="base :: footer"></div>

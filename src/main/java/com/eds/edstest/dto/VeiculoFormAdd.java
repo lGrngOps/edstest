@@ -2,7 +2,6 @@ package com.eds.edstest.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
