@@ -21,7 +21,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <span th:text="${mensagem}"></span>
       </div>
-      <form th:action="@{/editar/{id}(id=${veiculo.id})}" th:object="${veiculo}" method="post">
+      <form action="#" th:action="@{/editar/{id}(id=${veiculo.id})}" th:object="${veiculo}" method="post">
 
         <div class="row mb-3">
           <label class="col-sm-1 col-form-label">Marca :</label>

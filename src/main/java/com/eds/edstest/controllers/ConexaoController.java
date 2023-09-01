@@ -3,6 +3,7 @@ package com.eds.edstest.controllers;
 import com.eds.edstest.dto.VeiculoDTO;
 import com.eds.edstest.dto.VeiculoFormAdd;
 import com.eds.edstest.dto.VeiculoFormUpdate;
+import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.services.VeiculoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class ConexaoController {
 
     @GetMapping("/novo")
     public String adicionarVeiculo(Model model) {
-        model.addAttribute("veiculoFormAdd", new VeiculoFormAdd());
+        model.addAttribute("veiculo", new VeiculoFormAdd());
         return "/cadastro";
     }
 
@@ -67,15 +68,15 @@ public class ConexaoController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarVeiculo(@PathVariable("id") long id, VeiculoDTO veiculoDTO, @Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult result, RedirectAttributes attributes) {
+    public String editarVeiculo(@PathVariable("id") long id, @Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            //veiculoDTO.setId(id);
-            attributes.addFlashAttribute("mensagem");
-            return "/alteracao";
+            attributes.addFlashAttribute("mensagem","Deu xabu. Revise suas alterações");
+            return "redirect:/editar/{id}";
         }
         veiculoFormUpdate.setUpdated(Date.from(Instant.now()));
         veiculoService.updateById(veiculoFormUpdate, id);
         attributes.addFlashAttribute("mensagem","Alterações realizadas com sucesso!");
-        return "redirect:/listar";
+        return "redirect:/editar/{id}";
+
     }
 }
