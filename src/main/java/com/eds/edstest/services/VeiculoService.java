@@ -33,7 +33,9 @@ public class VeiculoService {
         if (optional.isPresent()){
             return convertToVeiculoDTO(optional.get());
         }
-        return null;
+        else
+            throw new IllegalArgumentException("Id não localizado");
+        //return null;
     }
 
     @Transactional
@@ -61,6 +63,8 @@ public class VeiculoService {
         if (veiculoRepository.existsById(id)) {
             veiculoRepository.deleteById(id);
         }
+        else
+            throw new IllegalArgumentException("Veículo não localizado");
     }
 
     @Transactional
@@ -82,8 +86,10 @@ public class VeiculoService {
             veiculoRepository.save(upt);
             return convertToVeiculoDTO(upt);
         }
-        return null;
+        else
+            throw new IllegalArgumentException("Falha ao atualizar informações do Veículo");
     }
+        //return null;
 
     private Veiculos convertToAddVeiculo (VeiculoFormAdd veiculoFormAdd){
         Veiculos veiculos = new Veiculos();
