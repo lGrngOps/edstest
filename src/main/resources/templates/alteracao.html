@@ -17,11 +17,16 @@
   <div class="row">
     <div class="col">
       <h2> Alteração de Veículos </h2>
-      <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+        <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <span th:text="${mensagem}"></span>
+        </div>
+      <div class="alert alert-danger alert-dismissible fade show" th:if="${xabu}">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <span th:text="${xabu}"></span>
       </div>
-      <form action="#" th:action="@{/editar/{id}(id=${veiculo.id})}" th:object="${veiculo}" method="post">
+
+      <form th:action="@{/editar/{id}(id=${veiculoVelho.id})}" th:object="${veiculoVelho}" method="post">
 
         <div class="row mb-3">
           <label class="col-sm-1 col-form-label">Marca :</label>
@@ -29,7 +34,7 @@
             <input type="text" class="form-control" th:field="*{marca}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
           </div>
         </div>
 
@@ -39,7 +44,7 @@
             <input type="text" class="form-control" th:field="*{veiculo}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('veiculo')}" th:errors="*{veiculo}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('veiculo')}" th:errors="*{veiculo}"></span>
           </div>
         </div>
 
@@ -49,7 +54,7 @@
             <input type="text" class="form-control" th:field="*{ano}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}"></span>
           </div>
         </div>
 
@@ -59,7 +64,7 @@
             <input type="text" class="form-control" th:field="*{descricao}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
           </div>
         </div>
 
@@ -69,7 +74,7 @@
             <input type="text" class="form-control" th:field="*{preco}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
           </div>
         </div>
 
@@ -79,7 +84,7 @@
             <input type="text" class="form-control" th:field="*{chassi}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
           </div>
         </div>
 
@@ -89,7 +94,7 @@
             <input type="text" class="form-control" th:field="*{vendido}">
           </div>
           <div class="col-sm-5">
-            <span class="mensagem" th:if="${#fields.hasErrors('vendido')}" th:errors="*{vendido}"></span>
+            <span class="xabu" th:if="${#fields.hasErrors('vendido')}" th:errors="*{vendido}"></span>
           </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Alterar"/>
