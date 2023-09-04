@@ -3,9 +3,10 @@ package com.eds.edstest.controllers;
 import com.eds.edstest.dto.VeiculoDTO;
 import com.eds.edstest.dto.VeiculoFormAdd;
 import com.eds.edstest.dto.VeiculoFormUpdate;
-import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.services.VeiculoService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.Instant;
 import java.util.Date;
 
-
-
 @Controller
 @RequestMapping("/")
 public class ConexaoController {
@@ -28,10 +27,9 @@ public class ConexaoController {
     @Autowired
     private VeiculoService veiculoService;
 
-
     @GetMapping("/novo")
     public String adicionarVeiculo(Model model) {
-        model.addAttribute("veiculo", new VeiculoFormAdd());
+        model.addAttribute("veiculoFormAdd", new VeiculoFormAdd());
         return "/cadastro";
     }
 
@@ -47,6 +45,7 @@ public class ConexaoController {
         attributes.addFlashAttribute("mensagem","Veículo cadastrado com sucesso!");
         return "redirect:/novo";
     }
+
     @RequestMapping("/listar")
     public String listarVeiculo(Model model) {
         model.addAttribute("veiculo", veiculoService.findAllVeiculos());
@@ -77,6 +76,5 @@ public class ConexaoController {
         veiculoService.updateById(veiculoFormUpdate, id);
         attributes.addFlashAttribute("mensagem","Alterações realizadas com sucesso!");
         return "redirect:/editar/{id}";
-
     }
 }
