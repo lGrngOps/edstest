@@ -15,9 +15,25 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col">
+
             <h2>Lista de Veículos</h2>
+
+                <form method="get" th:action="@{/buscar}">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="marca" placeholder="Buscar Veículo pela Marca">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-info" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                            </button>
+                            <a type="button" class="btn btn-primary" href="/novo" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Cadastrar
+                            </a>
+                        </div>
+                    </div>
+                </form>
 
             <table class="table table-striped">
                 <thead>

@@ -50,6 +50,11 @@ public class VeiculoService {
         List<Veiculos> result = veiculoRepository.findByOrderByVeiculoAsc();
         return convertListToDTO(result);
     }
+    @Transactional
+    public List<VeiculoDTO> searchVeiculo(String marca){
+        List<Veiculos> result = veiculoRepository.sistemaBuscar(marca);
+        return convertListToDTO(result);
+    }
 
     @Transactional
     // Teste Retorna os veículos de acordo com filtros passados através de query string

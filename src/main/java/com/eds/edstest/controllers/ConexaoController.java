@@ -49,6 +49,12 @@ public class ConexaoController {
         return "/consulta";
     }
 
+    @GetMapping("/buscar")
+    public String buscarVeiculo(@RequestParam("marca") String marca, Model model){
+        model.addAttribute("veiculo", veiculoService.searchVeiculo(marca.trim().toUpperCase()));
+        return "/consulta";
+    }
+
     @GetMapping("/apagar/{id}")
     public String apagarVeiculo(@PathVariable("id") long id) {
         VeiculoDTO veiculoDTO = veiculoService.findVeiculoById(id);
