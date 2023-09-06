@@ -86,10 +86,15 @@
 
                 <div class="row mb-3">
                     <label class="col-sm-1 col-form-label">Vendido :</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" th:field="*{vendido}">
+                    <div class="form-check col-sm-1">
+                        <input class="form-check-input" type="radio" name="vendido" value="true" id="flexRadioDefault1" th:field="*{vendido}">
+                            Sim
                     </div>
-                    <div class="col-sm-5">
+                    <div class="form-check col-sm-1">
+                        <input class="form-check-input" type="radio" name="vendido" value="false" id="flexRadioDefault2" th:field="*{vendido}">
+                            Não
+                    </div>
+                    <div class="col-sm-7">
                         <span class="mensagem" th:if="${#fields.hasErrors('vendido')}" th:errors="*{vendido}"></span>
                     </div>
                 </div>

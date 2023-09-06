@@ -21,7 +21,7 @@
 
                 <form method="get" th:action="@{/buscar}">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-10">
                             <input type="text" class="form-control" name="marca" placeholder="Buscar Veículo pela Marca">
                         </div>
                         <div class="col">
@@ -60,7 +60,10 @@
                     <td><span th:text="${veiculo.descricao}"> Descrição </span></td>
                     <td><span th:text="${veiculo.preco}"> Preço </span></td>
                     <td><span th:text="${veiculo.chassi}"> Chassi </span></td>
-                    <td><span th:text="${veiculo.vendido}"> Vendido </span></td>
+                    <td th:switch="${veiculo.vendido}">
+                        <span th:case="true" th:text="Sim"> Vendido </span>
+                        <span th:case="false" th:text="Não"> Vendido </span>
+                    </td>
                     <td><span th:text="${#dates.format(veiculo.created, 'dd/MM/yyyy HH:mm')}"> Criado </span></td>
                     <td><span th:text="${#dates.format(veiculo.updated, 'dd/MM/yyyy HH:mm')}"> Atualizado </span></td>
                     <td>
