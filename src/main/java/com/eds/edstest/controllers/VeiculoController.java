@@ -8,6 +8,7 @@ import com.eds.edstest.services.VeiculoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -39,8 +40,7 @@ public class VeiculoController {
     }
 
     @GetMapping("/veiculos")
-    public List<VeiculoDTO> findAll() {
-        return veiculoService.findAllVeiculos();
+    public List<VeiculoDTO> findAll() { return veiculoService.findAllVeiculos();
     }
 
     @DeleteMapping("/veiculos/{id}")

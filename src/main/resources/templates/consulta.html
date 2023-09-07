@@ -21,15 +21,15 @@
 
                 <form method="get" th:action="@{/buscar}">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-9">
                             <input type="text" class="form-control" name="marca" placeholder="Buscar Veículo pela Marca">
                         </div>
                         <div class="col">
                             <button type="submit" class="btn btn-info" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+                                <span aria-hidden="true">&xrarr;</span> Buscar
                             </button>
                             <a type="button" class="btn btn-primary" href="/novo" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Cadastrar
+                                <span aria-hidden="true">&plus;</span> Cadastrar
                             </a>
                         </div>
                     </div>
@@ -50,6 +50,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr th:if="${veiculo.empty}">
                     <td colspan="2">Sem veículos</td>
                 </tr>
@@ -83,6 +84,25 @@
                 </tr>
                 </tbody>
             </table>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>

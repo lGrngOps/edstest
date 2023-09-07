@@ -1,1 +1,10 @@
 INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Onix', 2012, 'Versão LTZ 1.0 Flex', 50000, '123456789XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Chevette', 2012, 'Versão LTZ 1.0 Flex', 50000, '123456789XY', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Vectra', 2012, 'Versão LTZ 1.0 Flex', 50000, '123456789YZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Corsa', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567890XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Opala', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567892XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Monza', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567893XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Captiva', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567894XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Meriva', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567896XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Celta', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567898XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Cruze', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567897XYZ', true, now(), now());

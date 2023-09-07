@@ -7,6 +7,10 @@ import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.repositories.VeiculoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,20 +43,39 @@ public class VeiculoService {
     }
 
     @Transactional
+    public List<VeiculoDTO> searchVeiculo(String marca){
+        List<Veiculos> result = veiculoRepository.sistemaBuscar(marca);
+        return convertListToDTO(result);
+    }
+
+    @Transactional
     public List<VeiculoDTO> findAllVeiculos(){ // Retorna todos os veiculos
         List<Veiculos> result = veiculoRepository.findAll();
         return convertListToDTO(result);
     }
 
+    public Page<Veiculos> getVeiculos(){
+        Pageable pageable = PageRequest.of(0,5);
+        return this.veiculoRepository.findAll(pageable);
+    }
+
+
+    //@Transactional
+    //public Page<Veiculos> findAllVeiculos(Pageable pageable){
+    //    return veiculoRepository.findAll(pageable);
+    //}
+
+    //@Transactional
+    //public String findAllVeiculos(Pageable pageable) {
+    //    Page<Veiculos> page = veiculoRepository.findAll(PageRequest.of(0,5));
+        //Page<Veiculos> page = veiculoService.listAll(PageRequest.of(0,5));
+    //    return page.getContent().toString();
+    //}
+    
     @Transactional
     // Teste Retorna os veículos de acordo com filtros passados através de query string
     public List<VeiculoDTO> findByOrderByVeiculoAsc(){
         List<Veiculos> result = veiculoRepository.findByOrderByVeiculoAsc();
-        return convertListToDTO(result);
-    }
-    @Transactional
-    public List<VeiculoDTO> searchVeiculo(String marca){
-        List<Veiculos> result = veiculoRepository.sistemaBuscar(marca);
         return convertListToDTO(result);
     }
 

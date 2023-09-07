@@ -45,9 +45,21 @@ public class ConexaoController {
 
     @RequestMapping("/listar")
     public String listarVeiculo(Model model) {
-        model.addAttribute("veiculo", veiculoService.findAllVeiculos());
+        model.addAttribute("veiculo", veiculoService.getVeiculos());
         return "/consulta";
     }
+
+    //@GetMapping("/list")
+    //public String paginacao(){
+    //    Page<Veiculos> page = veiculoService.listAll(PageRequest.of(0,5));
+    //    return Page<Veiculos> page = page.getContent().toString();
+    //    return page.getContent().toString();
+    //}
+
+    //@GetMapping("/testar")
+    //public ResponseEntity<Page<Veiculos>> list(Pageable pageable){
+    //    return ResponseEntity.ok(veiculoService.findAllVeiculos(pageable));
+    //}
 
     @GetMapping("/buscar")
     public String buscarVeiculo(@RequestParam("marca") String marca, Model model){

@@ -14,4 +14,6 @@ public interface VeiculoRepository extends JpaRepository<Veiculos, Long> {
     @Query(value = "select m from Veiculos m where upper(trim(m.marca)) like %?1%")
     List<Veiculos> sistemaBuscar(String marca);
 
+    List<Veiculos> findAll();
+
 }
