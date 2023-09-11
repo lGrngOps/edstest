@@ -3,11 +3,15 @@ package com.eds.edstest.controllers;
 import com.eds.edstest.dto.VeiculoDTO;
 import com.eds.edstest.dto.VeiculoFormAdd;
 import com.eds.edstest.dto.VeiculoFormUpdate;
+import com.eds.edstest.entities.Veiculos;
 import com.eds.edstest.services.VeiculoService;
 
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,11 +47,19 @@ public class ConexaoController {
         return "redirect:/novo";
     }
 
-    @RequestMapping("/listar")
-    public String listarVeiculo(Model model) {
-        model.addAttribute("veiculo", veiculoService.getVeiculos());
+    //@GetMapping("/listar")
+    //public String listarVeiculo(Model model) {
+    //    model.addAttribute("veiculo", veiculoService.getVeiculos());
+    //    return "/consulta";
+    //}
+
+    @GetMapping("/listar")
+    public String listarVeiculo(@PageableDefault(size = 5) Pageable pageable, Model model) {
+        Page<Veiculos> page = veiculoService.getVeiculos(pageable);
+        model.addAttribute("page", page);
         return "/consulta";
     }
+
 
     //@GetMapping("/list")
     //public String paginacao(){

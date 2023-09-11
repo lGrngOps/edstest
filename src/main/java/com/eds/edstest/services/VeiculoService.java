@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,8 +53,15 @@ public class VeiculoService {
         return convertListToDTO(result);
     }
 
-    public Page<Veiculos> getVeiculos(){
-        Pageable pageable = PageRequest.of(0,5);
+    //@Transactional
+    //public Page<Veiculos> getVeiculos(){
+    //    Pageable pageable = PageRequest.of(0,5);
+    //    return this.veiculoRepository.findAll(pageable);
+    //}
+
+    @Transactional
+    public Page<Veiculos> getVeiculos(Pageable pageable){
+    //    Pageable pageable = PageRequest.of(0,5);
         return this.veiculoRepository.findAll(pageable);
     }
 
