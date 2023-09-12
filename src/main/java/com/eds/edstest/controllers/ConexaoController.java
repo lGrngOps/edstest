@@ -47,6 +47,7 @@ public class ConexaoController {
         return "redirect:/novo";
     }
 
+    // ORIGINAL
     //@GetMapping("/listar")
     //public String listarVeiculo(Model model) {
     //    model.addAttribute("veiculo", veiculoService.getVeiculos());
@@ -73,10 +74,17 @@ public class ConexaoController {
     //    return ResponseEntity.ok(veiculoService.findAllVeiculos(pageable));
     //}
 
+
+    //@GetMapping("/buscar") *** ORIGINAL ****
+    //public String buscarVeiculo(@RequestParam("marca") String marca, Model model){
+    //    model.addAttribute("veiculo", veiculoService.searchVeiculo(marca.trim().toUpperCase()));
+    //    return "/busca";
+    //}
+
     @GetMapping("/buscar")
-    public String buscarVeiculo(@RequestParam("marca") String marca, Model model){
+    public String buscarVeiculo(@PageableDefault(size = 5) @RequestParam("marca") String marca, Model model){
         model.addAttribute("veiculo", veiculoService.searchVeiculo(marca.trim().toUpperCase()));
-        return "/consulta";
+        return "/busca";
     }
 
     @GetMapping("/apagar/{id}")

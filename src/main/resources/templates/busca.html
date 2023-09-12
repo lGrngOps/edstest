@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: headCust">
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" th:href="@{/bootstrap-5.3.1-dist/css/bootstrap.min.css}">
+  <script th:src="@{/jquery-3.7.0-dist/jquery-3.7.0.min.js}"></script>
+  <script th:src="@{/bootstrap-5.3.1-dist/js/bootstrap.min.js}"></script>
+
+  <title> ..:: Consulta de Veículos ::.. </title>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h2>Lista de Veículos</h2>
+
+      <form method="get" th:action="@{/buscar}">
+        <div class="row">
+          <div class="col-9">
+            <input type="text" class="form-control" name="marca" placeholder="Buscar Veículo pela Marca">
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-info" aria-label="Left Align">
+              <span aria-hidden="true">&xrarr;</span> Buscar
+            </button>
+            <a type="button" class="btn btn-primary" href="/novo" aria-label="Left Align">
+              <span aria-hidden="true">&plus;</span> Cadastrar
+            </a>
+          </div>
+        </div>
+      </form>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Veículo</th>
+          <th>Ano</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Chassi</th>
+          <th>Vendido</th>
+          <th>Criado</th>
+          <th>Atualizado</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:if="${veiculo.empty}">
+          <td colspan="2">Sem veículos</td>
+        </tr>
+
+        <tr th:each="veiculo : ${veiculo}">
+
+          <td><span th:text="${veiculo.marca}"> Marca </span></td>
+          <td><span th:text="${veiculo.veiculo}"> Veículo </span></td>
+          <td><span th:text="${veiculo.ano}"> Ano </span></td>
+          <td><span th:text="${veiculo.descricao}"> Descrição </span></td>
+          <td><span th:text="${veiculo.preco}"> Preço </span></td>
+          <td><span th:text="${veiculo.chassi}"> Chassi </span></td>
+          <td th:switch="${veiculo.vendido}">
+            <span th:case="true" th:text="Sim"> Vendido </span>
+            <span th:case="false" th:text="Não"> Vendido </span>
+          </td>
+          <td><span th:text="${#dates.format(veiculo.created, 'dd/MM/yyyy HH:mm')}"> Criado </span></td>
+          <td><span th:text="${#dates.format(veiculo.updated, 'dd/MM/yyyy HH:mm')}"> Atualizado </span></td>
+          <td>
+            <a class="btn btn-outline-danger btn-sm"
+               th:href="@{/apagar/{id}(id=${veiculo.id})}"
+               th:data-confirm-delete="|Você gostaria de apagar ${veiculo.marca} ${veiculo.veiculo} ${veiculo.ano}?|"
+               onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+              Apagar
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-outline-primary btn-sm"
+               th:href="@{/editar/{id}(id=${veiculo.id})}">
+              Editar
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- PAGINAÇÃO
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+
+          <li class="page-item">
+                        <span th:if="${page.hasPrevious()}">
+                            <a class="page-link" aria-label="Previous" th:href="@{/buscar(page=${page.number-1},size=${page.size})}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </span>
+          </li>
+
+          <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+            <li class="page-item">
+              <span th:if="${page.number == i}">[[${i}+1]]</span>
+            </li>
+            <li class="page-item" aria-current="page">
+                                <span th:unless="${page.number == i}">
+                                    <a class="page-link" th:href="@{/buscar(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                                </span>
+            </li>
+          </th:block>
+
+          <li class="page-item">
+                        <span th:if="${page.hasNext()}">
+                            <a class="page-link" aria-label="Next" th:href="@{/buscar(page=${page.number+1},size=${page.size})}">
+                        <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </span>
+          </li>
+        </ul>
+      </nav>
+-->
+
+    </div>
+  </div>
+</div>
+
+<div th:replace="base :: footer"></div>
+</body>
+</html>

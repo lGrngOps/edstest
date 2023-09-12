@@ -8,3 +8,4 @@ INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, c
 INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Meriva', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567896XYZ', true, now(), now());
 INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Celta', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567898XYZ', true, now(), now());
 INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Cruze', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567897XYZ', true, now(), now());
+INSERT INTO veiculos ( marca, veiculo, ano, descricao, preco, chassi, vendido, created, updated) VALUES ('General Motors', 'Cruze', 2012, 'Versão LTZ 1.0 Flex', 50000, '1234567899XYZ', true, now(), now());

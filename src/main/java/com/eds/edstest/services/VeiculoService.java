@@ -8,7 +8,6 @@ import com.eds.edstest.repositories.VeiculoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +30,12 @@ public class VeiculoService {
     }
 
     @Transactional
+    public List<VeiculoDTO> findAllVeiculos(){ // Retorna todos os veiculos
+        List<Veiculos> result = veiculoRepository.findAll();
+        return convertListToDTO(result);
+    }
+
+    @Transactional
     public VeiculoDTO findVeiculoById(Long id){ // Retorna os detalhes do veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
         if (optional.isPresent()){
@@ -44,12 +49,6 @@ public class VeiculoService {
     @Transactional
     public List<VeiculoDTO> searchVeiculo(String marca){
         List<Veiculos> result = veiculoRepository.sistemaBuscar(marca);
-        return convertListToDTO(result);
-    }
-
-    @Transactional
-    public List<VeiculoDTO> findAllVeiculos(){ // Retorna todos os veiculos
-        List<Veiculos> result = veiculoRepository.findAll();
         return convertListToDTO(result);
     }
 

@@ -9,16 +9,6 @@
 
     <title> ..:: Consulta de Veículos ::.. </title>
 
-<style>
-table{width:100%;}
-table td, table th { border: 1px solid grey;}
-table th { background: #eee;}
-.pagination-div{user-select: none;}
-.pagination-div span{border-radius:3px;border:1px solid #999;
-padding:5px;margin:10px 0px 0px 10px;display:inline-block}
-span.selected{background:#ccf;}
-</style>
-
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
@@ -61,10 +51,12 @@ span.selected{background:#ccf;}
                 </thead>
                 <tbody>
 
+                <tr th:if="${page.empty}">
+                    <td colspan="2">Sem veículos</td>
+                </tr>
 
+                <tr th:each="veiculo : ${page}">
 
-
-                <tr th:each="veiculo : ${page.content}">
                     <td><span th:text="${veiculo.marca}"> Marca </span></td>
                     <td><span th:text="${veiculo.veiculo}"> Veículo </span></td>
                     <td><span th:text="${veiculo.ano}"> Ano </span></td>
@@ -95,24 +87,37 @@ span.selected{background:#ccf;}
                 </tbody>
             </table>
 
-            <div class="pagination-div">
-                <span th:if="${page.hasPrevious()}">
-                    <a aria-label="Previous" th:href="@{/listar(page=${page.number-1},size=${page.size})}">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </span>
-                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
-                    <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
-                    <span th:unless="${page.number == i}">
-                    <a th:href="@{/listar(page=${i},size=${page.size})}">[[${i}+1]]</a>
-                </span>
-                </th:block>
-                <span th:if="${page.hasNext()}">
-                    <a aria-label="Next" th:href="@{/listar(page=${page.number+1},size=${page.size})}">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+
+                    <li class="page-item">
+                        <span th:if="${page.hasPrevious()}">
+                            <a class="page-link" aria-label="Previous" th:href="@{/listar(page=${page.number-1},size=${page.size})}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </span>
+                    </li>
+
+                        <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                            <li class="page-item">
+                                <span th:if="${page.number == i}">[[${i}+1]]</span>
+                            </li>
+                            <li class="page-item" aria-current="page">
+                                <span th:unless="${page.number == i}">
+                                    <a class="page-link" th:href="@{/listar(page=${i},size=${page.size})}">[[${i}+1]]</a>
+                                </span>
+                            </li>
+                        </th:block>
+
+                    <li class="page-item">
+                        <span th:if="${page.hasNext()}">
+                            <a class="page-link" aria-label="Next" th:href="@{/listar(page=${page.number+1},size=${page.size})}">
                         <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </span>
-            </div>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
     </div>
