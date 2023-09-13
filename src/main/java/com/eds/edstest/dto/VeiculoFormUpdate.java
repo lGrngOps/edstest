@@ -9,6 +9,7 @@ import java.util.Date;
 @Data
 public class VeiculoFormUpdate {
 
+    private Long id;
     @NotEmpty(message = " Gentileza informar a marca do veículo")
     private String marca;
     @NotEmpty(message = " Gentileza informar o modelo do veículo")

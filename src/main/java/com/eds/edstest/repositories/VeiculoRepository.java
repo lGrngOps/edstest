@@ -16,4 +16,6 @@ public interface VeiculoRepository extends JpaRepository<Veiculos, Long> {
 
     List<Veiculos> findAll();
 
+    Veiculos findByChassi(String chassi);
+
 }

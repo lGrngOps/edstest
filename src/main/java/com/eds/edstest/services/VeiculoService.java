@@ -38,11 +38,11 @@ public class VeiculoService {
     @Transactional
     public VeiculoDTO findVeiculoById(Long id){ // Retorna os detalhes do veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
-        if (optional.isPresent()){
-            return convertToVeiculoDTO(optional.get());
+        if (!optional.isPresent()){
+            throw new IllegalArgumentException("Id não localizado" + id);
         }
         else
-            throw new IllegalArgumentException("Id não localizado");
+            return convertToVeiculoDTO(optional.get());
         // return null;
     }
 
@@ -76,7 +76,13 @@ public class VeiculoService {
         //Page<Veiculos> page = veiculoService.listAll(PageRequest.of(0,5));
     //    return page.getContent().toString();
     //}
-    
+
+    @Transactional
+    public Veiculos findByChassi(String chassi){
+        Veiculos result = veiculoRepository.findByChassi(chassi);
+        return result;
+    }
+
     @Transactional
     // Teste Retorna os veículos de acordo com filtros passados através de query string
     public List<VeiculoDTO> findByOrderByVeiculoAsc(){
@@ -97,7 +103,7 @@ public class VeiculoService {
             veiculoRepository.deleteById(id);
         }
         else
-            throw new IllegalArgumentException("Veículo não localizado");
+            throw new IllegalArgumentException("Veículo não localizado"); // POSSIVELMENTE CONSERTAR
     }
 
     @Transactional
@@ -121,11 +127,12 @@ public class VeiculoService {
         }
         //return null;
         else
-            throw new IllegalArgumentException("Falha ao atualizar informações do Veículo");
+            throw new IllegalArgumentException("Falha ao atualizar informações do Veículo"); // POSSIVELMENTE CONSERTAR
     }
 
     private Veiculos convertToAddVeiculo (VeiculoFormAdd veiculoFormAdd){
         Veiculos veiculos = new Veiculos();
+
         veiculos.setMarca(veiculoFormAdd.getMarca());
         veiculos.setVeiculo(veiculoFormAdd.getVeiculo());
         veiculos.setAno(veiculoFormAdd.getAno());

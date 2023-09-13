@@ -35,11 +35,18 @@ public class ConexaoController {
     }
 
     @PostMapping("/salvar")
-    public String salvarVeiculo(@Valid VeiculoFormAdd veiculoFormAdd, BindingResult result, RedirectAttributes attributes){
+    public String salvarVeiculo(@Valid VeiculoFormAdd veiculoFormAdd, BindingResult result, RedirectAttributes attributes, Model model){
         if (result.hasErrors()){
             attributes.addFlashAttribute("mensagem");
             return "/cadastro";
         }
+
+        Veiculos chs = veiculoService.findByChassi(veiculoFormAdd.getChassi());
+        if (chs != null){
+            model.addAttribute("ChassiDuplo","Chassi já cadastrado. Revise sua informação");
+            return "/cadastro";
+        }
+
         veiculoFormAdd.setCreated(Date.from(Instant.now()));
         veiculoFormAdd.setUpdated(Date.from(Instant.now()));
         veiculoService.addVeiculo(veiculoFormAdd);
@@ -97,16 +104,26 @@ public class ConexaoController {
     @GetMapping("/editar/{id}")
     public String editarVeiculo(@PathVariable("id") long id, Model model) {
         VeiculoDTO veiculoVelho = veiculoService.findVeiculoById(id);
-        model.addAttribute("veiculoVelho",veiculoVelho);
+        model.addAttribute("veiculo",veiculoVelho);
         return "/alteracao";
     }
 
     @PostMapping("/editar/{id}")
-    public String editarVeiculo(@PathVariable("id") long id,@Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult problem, RedirectAttributes attributes) {
+    public String editarVeiculo(@PathVariable("id") long id,@Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult problem, RedirectAttributes attributes, Model model) {
         if (problem.hasErrors()) {
-            attributes.addFlashAttribute("xabu","Deu Xabu. Revise suas alterações");
-            return "redirect:/editar/{id}";
+            veiculoFormUpdate.setId(id);
+            attributes.addFlashAttribute("mensagem");
+            return "/alteracao";
         }
+
+        Veiculos chs = veiculoService.findByChassi(veiculoFormUpdate.getChassi());
+        if (chs != null){
+            veiculoFormUpdate.setId(id);
+            model.addAttribute("ChassiDuplo","Chassi já cadastrado. Revise sua informação");
+            //model.addAttribute("veiculo.id","veiculoFormUpdate.getId(id))");
+            return "/alteracao";
+        }
+
         veiculoFormUpdate.setUpdated(Date.from(Instant.now()));
         veiculoService.updateById(veiculoFormUpdate, id);
         attributes.addFlashAttribute("mensagem","Alterações realizadas com sucesso!");

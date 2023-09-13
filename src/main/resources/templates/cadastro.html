@@ -81,6 +81,8 @@
                     </div>
                     <div class="col-sm-5">
                         <span class="mensagem" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
+                        <span class="mensagem" th:if="${ChassiDuplo}" th:text="${ChassiDuplo}"></span>
+
                     </div>
                 </div>
 
