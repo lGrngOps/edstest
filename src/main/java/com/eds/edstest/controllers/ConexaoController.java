@@ -54,13 +54,6 @@ public class ConexaoController {
         return "redirect:/novo";
     }
 
-    // ORIGINAL
-    //@GetMapping("/listar")
-    //public String listarVeiculo(Model model) {
-    //    model.addAttribute("veiculo", veiculoService.getVeiculos());
-    //    return "/consulta";
-    //}
-
     @GetMapping("/listar")
     public String listarVeiculo(@PageableDefault(size = 5) Pageable pageable, Model model) {
         Page<Veiculos> page = veiculoService.getVeiculos(pageable);
@@ -68,6 +61,12 @@ public class ConexaoController {
         return "/consulta";
     }
 
+    // ORIGINAL
+    //@GetMapping("/listar")
+    //public String listarVeiculo(Model model) {
+    //    model.addAttribute("veiculo", veiculoService.getVeiculos());
+    //    return "/consulta";
+    //}
 
     //@GetMapping("/list")
     //public String paginacao(){
@@ -109,24 +108,18 @@ public class ConexaoController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarVeiculo(@PathVariable("id") long id,@Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult problem, RedirectAttributes attributes, Model model) {
-        if (problem.hasErrors()) {
-            veiculoFormUpdate.setId(id);
+    public String editarVeiculo(@PathVariable("id") long id,@Valid VeiculoFormUpdate veiculoFormUpdate, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            //veiculoFormUpdate.setId(id);
+            attributes.addFlashAttribute("xabu","Deu Xabu. Revise suas informações");
             attributes.addFlashAttribute("mensagem");
-            return "/alteracao";
-        }
-
-        Veiculos chs = veiculoService.findByChassi(veiculoFormUpdate.getChassi());
-        if (chs != null){
-            veiculoFormUpdate.setId(id);
-            model.addAttribute("ChassiDuplo","Chassi já cadastrado. Revise sua informação");
-            //model.addAttribute("veiculo.id","veiculoFormUpdate.getId(id))");
-            return "/alteracao";
+            attributes.addAttribute("mensagem");
+            return "redirect:/editar/{id}";
         }
 
         veiculoFormUpdate.setUpdated(Date.from(Instant.now()));
         veiculoService.updateById(veiculoFormUpdate, id);
-        attributes.addFlashAttribute("mensagem","Alterações realizadas com sucesso!");
+        attributes.addFlashAttribute("sucess","Alterações realizadas com sucesso!");
         return "redirect:/editar/{id}";
     }
 }

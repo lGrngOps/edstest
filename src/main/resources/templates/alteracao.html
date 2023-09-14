@@ -16,17 +16,21 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2> Alteração de Veículos </h2>
-        <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <span th:text="${mensagem}"></span>
-        </div>
-      <div class="alert alert-danger alert-dismissible fade show" th:if="${mensagem}">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <span th:text="${mensagem}"></span>
-      </div>
 
-      <form th:action="@{/editar/{id}(id=${veiculo.id})}" th:object="${veiculo}" method="post">
+      <h2> Alteração de Veículos </h2>
+
+
+        <div class="alert alert-success alert-dismissible fade show" th:if="${sucess}">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <span th:text="${sucess}"></span>
+        </div>
+
+            <div class="alert alert-danger alert-dismissible fade show" th:if="${xabu}">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <span th:text="${xabu}"></span>
+            </div>
+
+      <form action="#" th:action="@{/editar/{id}(id=${veiculo.id})}" th:object="${veiculo}" method="post">
 
         <div class="row mb-3">
           <label class="col-sm-1 col-form-label">Marca :</label>
@@ -81,12 +85,13 @@
         <div class="row mb-3">
           <label class="col-sm-1 col-form-label">Chassi :</label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" th:field="*{chassi}">
+            <input type="text" class="form-control-plaintext" th:field="*{chassi}">
           </div>
+          <!--
           <div class="col-sm-5">
-            <span class="xabu" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
-            <span class="mensagem" th:if="${ChassiDuplo}" th:text="${ChassiDuplo}"></span>
+            <span class="mensagem" th:if="${#fields.hasErrors('chassi')}" th:errors="*{chassi}"></span>
           </div>
+          -->
         </div>
 
         <div class="row mb-3">
@@ -105,7 +110,7 @@
         </div>
 
         <input class="btn btn-primary" type="submit" value="Alterar"/>
-        <a type="button" class="btn btn-primary" href="/">Cancelar</a>
+        <a type="button" class="btn btn-primary" href="/listar">Cancelar</a>
       </form>
     </div>
   </div>

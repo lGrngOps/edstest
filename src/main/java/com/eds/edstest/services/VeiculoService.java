@@ -8,6 +8,7 @@ import com.eds.edstest.repositories.VeiculoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,15 +36,14 @@ public class VeiculoService {
         return convertListToDTO(result);
     }
 
-    @Transactional
+    @Transactional // TESTADO E APROVADO
     public VeiculoDTO findVeiculoById(Long id){ // Retorna os detalhes do veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
         if (!optional.isPresent()){
-            throw new IllegalArgumentException("Id não localizado" + id);
+            throw new IllegalArgumentException("Id :" + id + " não localizado");
         }
         else
             return convertToVeiculoDTO(optional.get());
-        // return null;
     }
 
     @Transactional
@@ -60,7 +60,7 @@ public class VeiculoService {
 
     @Transactional
     public Page<Veiculos> getVeiculos(Pageable pageable){
-    //    Pageable pageable = PageRequest.of(0,5);
+        pageable = PageRequest.of(0,5);
         return this.veiculoRepository.findAll(pageable);
     }
 
@@ -97,37 +97,38 @@ public class VeiculoService {
         return convertListToDTO(result);
     }
 
-    @Transactional
+    @Transactional // TESTADO E APROVADO
     public void deleteById(Long id) { // Apaga o veiculo
         if (veiculoRepository.existsById(id)) {
             veiculoRepository.deleteById(id);
         }
         else
-            throw new IllegalArgumentException("Veículo não localizado"); // POSSIVELMENTE CONSERTAR
+            throw new IllegalArgumentException("Veículo não localizado");
     }
 
-    @Transactional
+    @Transactional // TESTADO E APROVADO
     public VeiculoDTO updateById(VeiculoFormUpdate veiculoFormUpdate, Long id) { // Atualiza os dados de um veiculo
         Optional<Veiculos> optional = veiculoRepository.findById(id);
 
-        if (optional.isPresent()){
+        if (!optional.isPresent()){
+            throw new IllegalArgumentException("Falha ao atualizar informações do Veículo");
+        }
+        else {
+
             Veiculos upt = optional.get();
 
-                upt.setMarca(veiculoFormUpdate.getMarca());
-                upt.setVeiculo(veiculoFormUpdate.getVeiculo());
-                upt.setAno(veiculoFormUpdate.getAno());
-                upt.setDescricao(veiculoFormUpdate.getDescricao());
-                upt.setPreco(veiculoFormUpdate.getPreco());
-                upt.setChassi(veiculoFormUpdate.getChassi());
-                upt.setVendido(veiculoFormUpdate.getVendido());
-                upt.setUpdated(veiculoFormUpdate.getUpdated());
+            upt.setMarca(veiculoFormUpdate.getMarca());
+            upt.setVeiculo(veiculoFormUpdate.getVeiculo());
+            upt.setAno(veiculoFormUpdate.getAno());
+            upt.setDescricao(veiculoFormUpdate.getDescricao());
+            upt.setPreco(veiculoFormUpdate.getPreco());
+            upt.setChassi(veiculoFormUpdate.getChassi());
+            upt.setVendido(veiculoFormUpdate.getVendido());
+            upt.setUpdated(veiculoFormUpdate.getUpdated());
 
             veiculoRepository.save(upt);
             return convertToVeiculoDTO(upt);
         }
-        //return null;
-        else
-            throw new IllegalArgumentException("Falha ao atualizar informações do Veículo"); // POSSIVELMENTE CONSERTAR
     }
 
     private Veiculos convertToAddVeiculo (VeiculoFormAdd veiculoFormAdd){
